@@ -24,27 +24,29 @@ public class LoginStepDefs {
         String password="";
 
         switch (user.toLowerCase().trim().replace(" ", "")) {
-            case "expensesmanager" -> {
+            case "expensesmanager":
                 username = ConfigurationReader.get("expenses_manager_username");
                 password = ConfigurationReader.get("expenses_manager_password");
-            }
-            case "inventorymanager" -> {
+                break;
+            case "inventorymanager" :
                 username = ConfigurationReader.get("inventory_manager_username");
                 password = ConfigurationReader.get("inventory_manager_password");
-            }
-            case "manufuser" -> {
+                break;
+            case "manufuser" :
                 username = ConfigurationReader.get("manufacturing_user_username");
                 password = ConfigurationReader.get("manufacturing_user_password");
-            }
-            case "posmanager" -> {
+                break;
+            case "posmanager" :
                 username = ConfigurationReader.get("pos_manager_username");
                 password = ConfigurationReader.get("pos_manager_password");
-            }
-            case "salesmanager" -> {
+                break;
+            case "salesmanager" :
                 username = ConfigurationReader.get("sales_manager_username");
                 password = ConfigurationReader.get("sales_manager_password");
-            }
-            default -> System.out.println("Invalid user type!");
+                break;
+            default :
+                System.out.println("Invalid user type!");
+                break;
         }
 
         loginPage.login(username,password);
