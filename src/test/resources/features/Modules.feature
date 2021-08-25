@@ -3,11 +3,8 @@ Feature: Top Menu Bars
   Background:
     Given user logs in as "pos manager"
 
-  Scenario Outline: Verify that POS manager can see top bar menus
-    Then user should see all "<modules>"
-
-    Examples:
-      | modules       |
+  Scenario: Verify that POS manager can see top bar menus
+    Then user should see all modules below
       | Discuss       |
       | Calendar      |
       | Notes         |
