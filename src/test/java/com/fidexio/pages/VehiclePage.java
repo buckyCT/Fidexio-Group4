@@ -16,6 +16,7 @@ public class VehiclePage<list> extends BasePage{
 
     @FindBy(xpath = "//*[@id=\"o_field_input_544\"]")
     public  WebElement modelOptions;
+
     @FindBy(name = "license_plate")
     public WebElement LicensePlate;
 
