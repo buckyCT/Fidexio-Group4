@@ -1,9 +1,10 @@
+@FIDE-252
 Feature: US54
 
   Background:
     Given user logs in as "pos manager"
 
-  @US54AC01
+  @US54-AC01 @FIDE-247
   Scenario: Verify that POS manager can see top bar menus
     Then user should see all modules below
       | Discuss       |
@@ -29,7 +30,7 @@ Feature: US54
       | Fleet         |
       | Dashboards    |
 
-  @US54AC02
+  @US54-AC02 @FIDE-250
   Scenario: Verify that POS manager can see menu on the left side
     And user navigates to "Fleet" module
     Then on the left side user should see all options below
@@ -40,7 +41,7 @@ Feature: US54
       | Vehicles Fuel Logs     |
       | Vehicles Services Logs |
 
-  @US54AC03 @US54AC04
+  @US54-AC03 @US54-AC04 @FIDE-251
   Scenario Outline: Verify that POSmanager can create a new cost
     Given user navigates to "Fleet" module
     And user navigates to "Vehicle Costs" in Fleet page
