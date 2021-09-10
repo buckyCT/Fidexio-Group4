@@ -2,6 +2,7 @@ package com.fidexio.pages;
 
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -46,6 +47,46 @@ public abstract class BasePage {
                 throw new NoSuchElementException();
             }
         }
+    }
+
+    //button on username on the homepage
+    @FindBy(css = "span.oe_topbar_name")
+    public WebElement usernameBtn;
+
+    //logout button on the main page
+    @FindBy(linkText = "Log out")
+    public WebElement logoutBtn;
+
+    //top menus(22)
+    @FindBy(xpath = "//ul[@class='nav navbar-nav navbar-left oe_application_menu_placeholder']/li/a/span")
+    public List<WebElement> topBarMenus;
+
+    //Fleet tab menu
+    @FindBy(xpath = "//span[contains(text(),'Fleet')]")
+    public WebElement fleetTab;
+
+    //More tab menu
+    @FindBy(xpath = "//li[@id='menu_more_container']/a")
+    public WebElement moreTab;
+
+    @FindBy(css = "#menu_more>li")
+    public List <WebElement> moreLists;
+
+    public void navigateToModule() {
+
+        WebElement moreTab = Driver.get().findElement(By.xpath("//li[@id='menu_more_container']/a"));
+
+        moreTab.click();
+
+        List<WebElement> fourModules = Driver.get().findElements(By.xpath("(//ul[@class='oe_secondary_submenu nav nav-pills nav-stacked'])[34]/li/a/span"));
+
+        for (WebElement eachModules : fourModules) {
+
+            String eachModuleText = eachModules.getText();
+
+            System.out.println(eachModuleText);
+        }
+
     }
 
 }

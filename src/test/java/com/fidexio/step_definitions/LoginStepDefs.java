@@ -4,6 +4,7 @@ import com.fidexio.pages.LoginPage;
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -85,5 +86,55 @@ public class LoginStepDefs {
         Assert.assertTrue(true);
     }
 
+    //using invalid or blank username or password- dynamic way
+    @When("the user logs in using {string} or {string}")
+    public void the_user_logs_in_using_or(String username1, String password1) {
+        new LoginPage().login1(username1,password1);
+
+    }
+
+    //the user using invalid credential can see error message (Wrong login/password)
+    @Then("the user should not be able to login")
+    public void the_user_should_not_be_able_to_login() {
+
+        Assert.assertTrue(new LoginPage().errorMessage.isDisplayed());
+
+    }
+
+    //when user could not login and want to reset his password
+    @And("User should see reset password on the login page")
+    public void userShouldSeeResetPasswordOnTheLoginPage() {
+
+        System.out.println("forgotPasswordLink = " + new LoginPage().forgetPasswordLink.getText());
+        Assert.assertTrue(new LoginPage().forgetPasswordLink.isDisplayed());
+    }
+
+    //user using valid credentials is in login page
+    @Given("the user is in login page")
+    public void theUserIsInLoginPage() {
+
+        Driver.get().get(ConfigurationReader.get("url"));
+    }
+
+    //user entering usertype and valid username-password from the feature-dynamic
+    @When("the user logged in as {string} using {string} {string}")
+    public void theUserLoggedInAsUsingUsernamePassword(String userType, String username, String password) {
+
+        Driver.get().get(ConfigurationReader.get("url"));
+
+        new LoginPage().login(username, password);
+
+    }
+
+    //user is in main page and the title is asserted
+    @Then("the user should be able to login")
+    public void the_user_should_be_able_to_login() {
+
+        BrowserUtils.waitFor(3);
+        String actualTitle = Driver.get().getTitle();
+        Assert.assertEquals("#Inbox - Odoo", actualTitle);
+        BrowserUtils.waitFor(2);
+
+    }
 
 }

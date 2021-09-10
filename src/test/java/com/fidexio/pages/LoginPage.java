@@ -17,6 +17,22 @@ public class LoginPage {
     @FindBy(id = "password")
     public WebElement passwordInput;
 
+    //loginpage username checkbox
+    @FindBy(id = "login")
+    public WebElement userName;
+
+    //loginpage password checkbox
+    @FindBy(id = "password")
+    public WebElement password;
+
+    //loginpage errror message while using invalid credentials
+    @FindBy(css = "p.alert.alert-danger")
+    public WebElement errorMessage;
+
+    //loginpage reset password link
+    @FindBy(linkText = "Reset Password")
+    public WebElement forgetPasswordLink;
+
     @FindBy(xpath = "//button[@type='submit'][text()='Log in']")
     public WebElement loginBtn;
 
@@ -32,6 +48,13 @@ public class LoginPage {
     public void login(String username, String password){
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
+        loginBtn.click();
+    }
+
+    // method for invalid or blank username or password
+    public void login1(String username1, String password1) {
+        userName.sendKeys(username1);
+        password.sendKeys(password1);
         loginBtn.click();
     }
 
