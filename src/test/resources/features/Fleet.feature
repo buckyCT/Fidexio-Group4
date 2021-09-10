@@ -12,3 +12,4 @@ Feature: Fleet Page
       | Vehicles Contracts     |
       | Vehicles Fuel Logs     |
       | Vehicles Services Logs |
+
